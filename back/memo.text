@@ -1,0 +1,54 @@
+レイヤードアーキテクチャ
+
+3層
+Presentation（Route）
+↓
+Business（Service + Domain）
+↓
+Infrastructure（Repository）
+
+
+4層（ドメインルールが多い時とか）
+Presentation（Route）　HTTPを受け取り、Serviceを呼ぶ
+↓
+Application（Service）　ユースケースを実行、Domainを利用し、Repositoryを呼ぶ
+↓
+Domain（Entity）　エンティティ・ビジネスロジックの定義
+↓
+Infrastructure（Repository）　データ保存や外部技術の実装
+
+post
+4層で実装
+サービスがリポジトリに依存（ドメインはインフラを知らない）
+
+user
+4層で実装
+サービスがリポジトリに依存（ドメインはインフラを知らない）
+カスタムエラーを作成
+
+
+
+クリーンアーキテクチャ
+
+Controller
+↓
+UseCase
+↓
+Entity
+↓
+Repository Interface
+　　　↑
+Repository Implementation
+　　　↓
+DB
+
+
+Repository Interface　－　インターフェースのみ
+Repository Implementation　－　インターフェースの実装
+UseCaseは実際の実装は知らない
+エンティティはどこにも依存しない
+
+Repositoryの技術変更の際、
+インタフェースなし → useCaseとimplementationを修正
+インタフェースあり → implementationだけを修正
+あと技術依存していないからテストとかしやすい

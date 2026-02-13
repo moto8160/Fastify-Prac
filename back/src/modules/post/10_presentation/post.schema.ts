@@ -3,6 +3,7 @@
 export const createPostSchema = {
   body: {
     type: 'object',
+    required: ['title', 'content'], //入力必須チェック
     properties: {
       title: {
         type: 'string',
@@ -21,6 +22,7 @@ export const createPostSchema = {
 export const updatePostSchema = {
   body: {
     type: 'object',
+    required: ['title', 'content'],
     properties: {
       title: {
         type: 'string',
